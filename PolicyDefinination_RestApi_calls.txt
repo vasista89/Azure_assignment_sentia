@@ -1,0 +1,107 @@
+Rest API Command to create:-- 
+PUT https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}?api-version=2018-03-01
+
+Command Used: https://management.azure.com/subscriptions/52e5dc09-39f5-4d0a-8d8d-c3ad5de52251/providers/Microsoft.Authorization/policyDefinitions/Sentia_AllRG_PD?api-version=2018-03-01
+
+Request Body:
+{
+	"properties": {
+		"mode": "all",
+		"parameters": {
+			"ResourceType1": {
+				"type": "string",
+				"defaultValue": "Microsoft.Compute",
+				"allowedValues": [
+					"Microsoft.Compute"
+				],
+				"metadata": {
+					"description": "All the Compute resource types.",
+					"strongType": "resourceTypes"
+				}
+			},
+			"ResourceType2": {
+				"type": "string",
+				"defaultValue": "Microsoft.Storage",
+				"allowedValues": [
+					"Microsoft.Storage"
+				],
+				"metadata": {
+					"description": "All the Storage resource types.",
+					"strongType": "resourceTypes"
+				}
+			},
+			"ResourceType3": {
+				"type": "string",
+				"defaultValue": "Microsoft.Network",
+				"allowedValues": [
+					"Microsoft.Network"
+				],
+				"metadata": {
+					"description": "All the Network resource types.",
+					"strongType": "resourceTypes"
+				}
+			}
+		},
+		"displayName": "Allowed resource Groups",
+		"description": "This policy allows only resouce groups of Compute, Storage and Network",
+		"policyRule": {
+			"if": {
+				"anyOf": [{
+						"not": {
+							"field": "type",
+							"like": "[concat(parameters('ResourceType1'),'*')]"
+						}
+					},
+					{
+						"not": {
+							"field": "type",
+							"like": "[concat(parameters('ResourceType2'),'*')]"
+						}
+					},
+					{
+						"not": {
+							"field": "type",
+							"like": "[concat(parameters('ResourceType3'),'*')]"
+						}
+					}
+				]
+			},
+			"then": {
+				"effect": "deny"
+			}
+		}
+	}
+
+}
+
+
+Rest API Command to assign PD:--
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}?api-version=2018-03-01
+  
+Command Used: https://management.azure.com/subscriptions/52e5dc09-39f5-4d0a-8d8d-c3ad5de52251/resourceGroups/SentiaResourceGroup/providers/Microsoft.Authorization/policyAssignments/ApplyCustomPD?api-version=2018-03-01 
+  
+Request Body:  
+
+{
+  "properties": {
+    "displayName": "Only allow Compute, Storage and Network resource Types",
+    "metadata": {
+      "assignedBy": "User"
+    },
+    "policyDefinitionId": "/subscriptions/52e5dc09-39f5-4d0a-8d8d-c3ad5de52251/providers/Microsoft.Authorization/policyDefinitions/Sentia_Allowed_Policy",
+    "parameters": {
+      "ResourceType1": {
+        "value": "Microsoft.Compute"
+      },
+      "ResourceType2": {
+        "value": "Microsoft.Storage"
+      },
+	  "ResourceType3": {
+        "value": "Microsoft.Network"
+      }
+    }
+  }
+}  
+  
+  
+  

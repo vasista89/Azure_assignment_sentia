@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "displayName": "Only allow Compute, Storage and Network resource Types",
+    "metadata": {
+      "assignedBy": "User"
+    },
+    "policyDefinitionId": "/subscriptions/52e5dc09-39f5-4d0a-8d8d-c3ad5de52251/providers/Microsoft.Authorization/policyDefinitions/Sentia_Allowed_Policy",
+    "parameters": {
+      "ResourceType1": {
+        "value": "Microsoft.Compute"
+      },
+      "ResourceType2": {
+        "value": "Microsoft.Storage"
+      },
+	  "ResourceType3": {
+        "value": "Microsoft.Network"
+      }
+    }
+  }
+}
