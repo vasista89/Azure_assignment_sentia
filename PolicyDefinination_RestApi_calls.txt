@@ -1,7 +1,7 @@
 Rest API Command to create:-- 
 PUT https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}?api-version=2018-03-01
 
-Command Used: https://management.azure.com/subscriptions/52e5dc09-39f5-4d0a-8d8d-c3ad5de52251/providers/Microsoft.Authorization/policyDefinitions/Sentia_AllRG_PD?api-version=2018-03-01
+Command Used: https://management.azure.com/subscriptions/52e5dc09-39f5-4d0a-8d8d-c3ad5de52251/providers/Microsoft.Authorization/policyDefinitions/Sentia_AllowedRG_Policy?api-version=2018-03-01
 
 Request Body:
 {
@@ -88,7 +88,7 @@ Request Body:
     "metadata": {
       "assignedBy": "User"
     },
-    "policyDefinitionId": "/subscriptions/52e5dc09-39f5-4d0a-8d8d-c3ad5de52251/providers/Microsoft.Authorization/policyDefinitions/Sentia_Allowed_Policy",
+    "policyDefinitionId": "/subscriptions/52e5dc09-39f5-4d0a-8d8d-c3ad5de52251/providers/Microsoft.Authorization/policyDefinitions/Sentia_AllowedRG_Policy",
     "parameters": {
       "ResourceType1": {
         "value": "Microsoft.Compute"

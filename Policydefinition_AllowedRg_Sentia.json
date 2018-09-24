@@ -1,0 +1,67 @@
+{
+	"properties": {
+		"mode": "all",
+		"parameters": {
+			"ResourceType1": {
+				"type": "string",
+				"defaultValue": "Microsoft.Compute",
+				"allowedValues": [
+					"Microsoft.Compute"
+				],
+				"metadata": {
+					"description": "All the Compute resource types.",
+					"strongType": "resourceTypes"
+				}
+			},
+			"ResourceType2": {
+				"type": "string",
+				"defaultValue": "Microsoft.Storage",
+				"allowedValues": [
+					"Microsoft.Storage"
+				],
+				"metadata": {
+					"description": "All the Storage resource types.",
+					"strongType": "resourceTypes"
+				}
+			},
+			"ResourceType3": {
+				"type": "string",
+				"defaultValue": "Microsoft.Network",
+				"allowedValues": [
+					"Microsoft.Network"
+				],
+				"metadata": {
+					"description": "All the Network resource types.",
+					"strongType": "resourceTypes"
+				}
+			}
+		},
+		"displayName": "Allowed resource Groups",
+		"description": "This policy allows only resouce groups of Compute, Storage and Network",
+		"policyRule": {
+			"if": {
+				"allOf": [
+					{
+						"field": "type",
+						"notLike": "[concat(parameters('ResourceType1'),'*')]"
+						
+					},
+					{
+						"field": "type",
+						"notLike": "[concat(parameters('ResourceType2'),'*')]"
+						
+					},
+					{
+						"field": "type",
+						"notLike": "[concat(parameters('ResourceType3'),'*')]"
+						
+					}
+				]
+			},
+			"then": {
+				"effect": "deny"
+			}
+		}
+	}
+
+}
