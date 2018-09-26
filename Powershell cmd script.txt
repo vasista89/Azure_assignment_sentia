@@ -1,0 +1,5 @@
+New-AzureRmDeployment `
+-Name demoRGStorage `
+-Location southcentralus `
+-TemplateParameterUri https://raw.githubusercontent.com/vasista89/Azure_assignment_sentia/master/Parameters_DeploymentScript_RG_StorageAcc_VirNw.json `
+-TemplateUri https://raw.githubusercontent.com/vasista89/Azure_assignment_sentia/master/DeploymentScript_RG_StorageAcc_VirNw.json
