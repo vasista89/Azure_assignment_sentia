@@ -46,23 +46,21 @@ Request Body:
 		"description": "This policy allows only resouce groups of Compute, Storage and Network",
 		"policyRule": {
 			"if": {
-				"anyOf": [{
-						"not": {
-							"field": "type",
-							"like": "[concat(parameters('ResourceType1'),'*')]"
-						}
+				"allOf": [
+					{
+						"field": "type",
+						"notLike": "[concat(parameters('ResourceType1'),'*')]"
+						
 					},
 					{
-						"not": {
-							"field": "type",
-							"like": "[concat(parameters('ResourceType2'),'*')]"
-						}
+						"field": "type",
+						"notLike": "[concat(parameters('ResourceType2'),'*')]"
+						
 					},
 					{
-						"not": {
-							"field": "type",
-							"like": "[concat(parameters('ResourceType3'),'*')]"
-						}
+						"field": "type",
+						"notLike": "[concat(parameters('ResourceType3'),'*')]"
+						
 					}
 				]
 			},
@@ -73,6 +71,7 @@ Request Body:
 	}
 
 }
+
 
 
 Rest API Command to assign PD:--
